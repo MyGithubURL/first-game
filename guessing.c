@@ -2,6 +2,11 @@
 #include <time.h>
 #include <stdlib.h>
 
+#define HGRN "\e[0;92m"
+#define HYEL "\e[0;93m"
+#define HRED "\e[0;91m"
+#define reset "\e[0m"
+
 int main()
 {
     int attempts, option, try;
@@ -9,9 +14,9 @@ int main()
     srand(time(NULL));
     int randomNumber = rand()%50;
 
-    printf("\n1 - Easy: 15 attempts\n");
-    printf("2 - Medium: 10 attempts\n");
-    printf("3 - Hard: 5 attempts\n");
+    printf(HGRN "\n1 - Easy: 15 attempts\n");
+    printf(HYEL "2 - Medium: 10 attempts\n");
+    printf(HRED "3 - Hard: 5 attempts\n" reset);
     printf("Choose the difficult (1/2/3): ");
     scanf("%d", &option);
 
@@ -40,19 +45,19 @@ int main()
         }
 
         if(try > randomNumber) {
-            printf("\nThe random number is SMALLER\n");
+            printf("\nThe random number is " HRED "SMALLER\n" reset);
         }
         if(try < randomNumber) {
-            printf("\nThe random number is BIGGER\n");
+            printf("\nThe random number is " HGRN "BIGGER\n" reset);
         }
 
         if(try == randomNumber) {
-            printf("\n\n\tCONGRATULATIONS !!! YOU WIN\n\n");
+            printf(HYEL "\n\n\tCONGRATULATIONS !!! YOU WIN\n\n" reset);
             break;
         }
         attempts--;
     } while (try =! randomNumber || attempts > 0);
     if(attempts == 0) {
-        printf("Game Over -- No more attempts");
+        printf(HRED "Game Over -- No more attempts" reset);
     }
 }
